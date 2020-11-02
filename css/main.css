@@ -294,8 +294,15 @@ i.menu {
 }
 
 .myhighlight{
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255,255,255,1);
+  border: 4px solid #eb8f50;
+  border-radius: 8px;
 }
+
+.myhighlight.low {
+  background-color:rgba(255,255,255,0.2);
+}
+
 div.introjs-progressbar{
   background-color: #f59315;
 }

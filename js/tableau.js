@@ -283,6 +283,15 @@
       keyboardNavigation: true,
       highlightClass:"myhighlight"
     });
+    it.onafterchange(function(targetElement) {
+      if($(targetElement).hasClass("tab-widget")){
+        $(".myhighlight").addClass("low");
+      }
+      else{
+        $(".myhighlight").removeClass("low");
+      }
+
+    });
     it.start();
   }
   window.tabportal={};
