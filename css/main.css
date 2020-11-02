@@ -301,6 +301,17 @@ i.menu {
 
 .myhighlight.low {
   background-color:rgba(255,255,255,0.2);
+  left:10px !important;
+  width: 230px !important;
+}
+
+.introjs-tooltipReferenceLayer.low{
+  left: 10px !important;
+}
+
+.introjs-tooltip {
+  max-width: 400px;
+  width: 400px;
 }
 
 div.introjs-progressbar{
