@@ -1,5 +1,5 @@
 ;(function(window, undefined) {
-  var viz, widget, edit, curmarks;
+  var viz, widget, edit, curmarks,isEditLoaded=false;
   var selectMarks=[];
   var editHeight="calc(100% - 26.5px)";
   var askHeight="calc(100% - 91px)";
@@ -14,8 +14,8 @@
   });
 
   function resizeElements(){
-    edit.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-27);
-    viz.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-92);
+    if(isEditLoaded==true)
+      edit.setFrameSize($("#main").outerWidth(), $("#main").outerHeight()-27);
   }
 
   function loadVizInit() {
@@ -28,7 +28,6 @@
         enableDashFeature();
         listenToMarksSelection();
         $(".dash").addClass("navi");
-        viz.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-92);
       },
       device:mobileCheck()?'phone':'default',
       width: "100%",
@@ -132,8 +131,8 @@
           width: "100%",
           height: editHeight,
           onFirstInteractive: function () {
+            isEditLoaded=true;
             var iframe = $("#tableauEdit iframe")[0];
-            edit.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-27);
             $(".edit").removeClass("disabled");
             $(".edit").removeClass("loading");
             $(".edit").addClass("navi");
@@ -155,6 +154,7 @@
         $(".ask").removeClass("disabled");
         $(".ask").removeClass("loading");
         $(".ask").addClass("navi");
+        isAskLoaded=true;
       })
       $("#tableauAsk iframe")[0].contentWindow.location=ask_url;
       $("#tableauAsk iframe")[0].style.height=askHeight;
@@ -194,6 +194,7 @@
       $(".ask").removeClass("disabled");
       $("#myCarousel").carousel(1);
       $("#myCarousel").carousel("pause");
+      resizeElements();
     }
   }
 
