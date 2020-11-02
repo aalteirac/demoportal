@@ -10,8 +10,12 @@
   const FIELD_ACTION="State";
 
   $( window ).resize(function() {
-    edit.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-27);
+    resizeElements();
   });
+
+  function resizeElements(){
+    edit.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-27);
+  }
 
   function loadVizInit() {
     urlView=`${VIEW_PATH}?:embed=y&render=true`;
@@ -267,6 +271,7 @@
     else{
       $(".collapsable").addClass("collapsed");
     }
+    resizeElements();
   }
 
   function intro(){
