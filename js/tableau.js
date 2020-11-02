@@ -15,6 +15,7 @@
 
   function resizeElements(){
     edit.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-27);
+    viz.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-92);
   }
 
   function loadVizInit() {
@@ -27,6 +28,7 @@
         enableDashFeature();
         listenToMarksSelection();
         $(".dash").addClass("navi");
+        viz.setFrameSize($("#myCarousel").outerWidth(), $("#main").outerHeight()-92);
       },
       device:mobileCheck()?'phone':'default',
       width: "100%",
