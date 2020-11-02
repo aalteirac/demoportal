@@ -290,6 +290,11 @@
       keyboardNavigation: true,
       highlightClass:"myhighlight"
     });
+    it.onbeforechange(function(targetElement) {
+      if($(targetElement).hasClass("tab-widget") && $("#main").hasClass("collapsed")){
+        toggleMenu();
+      }
+    });
     it.onafterchange(function(targetElement) {
       if($(targetElement).hasClass("tab-widget")){
         $(".myhighlight").addClass("low");
@@ -299,6 +304,7 @@
         $(".myhighlight").removeClass("low");
         $(".introjs-tooltipReferenceLayer").removeClass("low");
       }
+      $("body").scrollLeft(100);
 
     });
     it.start();
