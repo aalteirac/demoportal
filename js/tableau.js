@@ -16,10 +16,6 @@
   function resizeElements(){
     if(isEditLoaded==true)
       edit.setFrameSize($("#main").outerWidth(), $("#main").outerHeight()-27);
-      if($("#main").hasClass("collapsed"))
-        viz.setFrameSize($("body").outerWidth(), $("#main").outerHeight()-90);
-      else
-        viz.setFrameSize($("body").outerWidth()-250, $("#main").outerHeight()-90);
   }
 
   function loadVizInit() {
