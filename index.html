@@ -14,9 +14,9 @@
   <script type="text/javascript" src="js/embedrocks.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4888cceb4.js"></script>
-  <script src="js/tableau.js?tm=61"></script>
+  <script src="js/tableau.js?tm=64"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="css/main.css?tm=61" rel="stylesheet" type="text/css" media="all">
+  <link href="css/main.css?tm=64" rel="stylesheet" type="text/css" media="all">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.0.1/intro.min.js" integrity="sha512-Y3bwrs/uUQhiNsD26Mpr5YvfG18EY0J+aNxYI7ZQPJlM9H+lElGpuh/JURVJR/NBE+p1JZ+sVE773Un4zQcagg==" crossorigin="anonymous"></script>
   <script type="text/javascript">
       window.mobileCheck = function() {
@@ -38,10 +38,6 @@
   <script type="text/javascript">
     var idleTime = 0;
     $(document).ready(function () {
-      if(localStorage.getItem('first')==null){
-        localStorage.setItem('first',"nop");
-        tabportal.intro();
-      }
       var idleInterval = setInterval(timerIncrement, 60000);
       $(this).mousemove(function (e) {
           idleTime = 0;
@@ -102,7 +98,7 @@
     <i title="Only West Coast" onclick="tabportal.filter(this,'Region','East')" class="filt dashfeat mbtn roro fas fa-balance-scale-right disabled" ></i>
     <i title="Take Action by Selecting States" onclick="tabportal.showMarks()" class="glow mbtn action fas fa-flag disabled" data-intro="Trigger Actions on Selections<br>Demonstrate Dashboard to App Communication.<br>You need to first select States on the map."></i>
     <i class="separator fas"></i>
-    <i onclick="tabportal.intro()" class="help mbtn fas fa-question"></i>
+    <i onclick="tabportal.intro()" class="dashfeat help mbtn fas fa-question"></i>
   </div>
   
   <div id="main" class="collapsable">

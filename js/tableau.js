@@ -4,9 +4,9 @@
   var editHeight="calc(100% - 26.5px)";
   var askHeight="calc(100% - 91px)";
   var dashHeight="91vh";
-  const DS_NAME="SuperstoreDatasource";
-  const VIEW_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore/Overview";
-  const WIDGET_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore/Widget";
+  const DS_NAME="Sample-Superstore";
+  const VIEW_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore_16044844364960/Overview";
+  const WIDGET_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore_16044844364960/Widget";
   const FIELD_ACTION="State";
 
   $( window ).resize(function() {
@@ -226,14 +226,22 @@
     var wid = widget.getWorkbook().getActiveSheet();
     if(value.length==0){
       wid.applyFilterAsync(filterName, value, tableau.FilterUpdateType.ALL)
-      $(".profilt").text(`Profit per Month`)
+      $(".profilt").text(`Profit per Month`);
+      $(".profilt").prop("title",`Profit per Month`);
     }
     else{
       wid.applyFilterAsync(filterName, value, tableau.FilterUpdateType.REPLACE)
-      if(value.length==1)
-        $(".profilt").text(`Profit (${value[0]})`)
+      if(value.length==1){
+        $(".profilt").text(`Profit (${value[0]})`);
+        $(".profilt").prop("title",value[0]);
+      }
       else{
-        $(".profilt").text(`Profit (${value.length} States)`)
+        $(".profilt").text(`Profit (${value.length} States)`);
+        var tip="";
+        value.map((elem)=>{
+          tip=tip+(tip===""? "":", ")+elem;
+        })
+        $(".profilt").prop("title",tip);
       }  
     }
   }
@@ -286,11 +294,9 @@
       keyboardNavigation: true,
       highlightClass:"myhighlight"
     });
-    it.onbeforechange(function(targetElement) {
-      if($(targetElement).hasClass("tab-widget") && $("#main").hasClass("collapsed")){
-        toggleMenu();
-      }
-    });
+    if($("#main").hasClass("collapsed")){
+      toggleMenu();
+    }
     it.onafterchange(function(targetElement) {
       if($(targetElement).hasClass("tab-widget")){
         $(".myhighlight").addClass("low");
