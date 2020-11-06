@@ -170,7 +170,7 @@
   color: #f59315;
 }
 
-.fas.mbtn.disabled.navi{
+.fas.mbtn.selected.navi{
   opacity: 1;
   color: #f59315;
   cursor: pointer;

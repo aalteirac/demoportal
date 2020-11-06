@@ -2,6 +2,7 @@
 <head>
   <!-- <meta name="viewport" content="width=device-width, initial-scale=0"> -->
   <title>ACME Inc.</title>
+  <link href="css/reset.css?tm=66" rel="stylesheet" type="text/css" media="all">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -14,9 +15,10 @@
   <script type="text/javascript" src="js/embedrocks.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4888cceb4.js"></script>
-  <script src="js/tableau.js?tm=64"></script>
+  <script src="js/tableau.js?tm=66"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="css/main.css?tm=64" rel="stylesheet" type="text/css" media="all">
+  <link href="css/main.css?tm=66" rel="stylesheet" type="text/css" media="all">
+  <link href="css/thumb.css?tm=66" rel="stylesheet" type="text/css" media="all">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.0.1/intro.min.js" integrity="sha512-Y3bwrs/uUQhiNsD26Mpr5YvfG18EY0J+aNxYI7ZQPJlM9H+lElGpuh/JURVJR/NBE+p1JZ+sVE773Un4zQcagg==" crossorigin="anonymous"></script>
   <script type="text/javascript">
       window.mobileCheck = function() {
@@ -33,6 +35,9 @@
       }
       function initializeViz() {
         tabportal.loadVizInit();
+        setTimeout(()=>{
+            tabportal.goThumb();
+          },3000)
       }
   </script>
   <script type="text/javascript">
@@ -86,7 +91,8 @@
     <i class="search mbtn fas fa-search"></i>
     <span class="texter">-Quick search-</span>
     <i class="separator fas"></i>
-    <i title="Dashboard" onclick="tabportal.goDash()" class="mbtn dash fas fa-chart-bar disabled" data-intro='Navigate to Dashboard.'></i>
+    <i title="Navigate" onclick="tabportal.goThumb(true)" class="mbtn navigator navi fas fa-compass"></i>
+    <i title="Dashboard" onclick="tabportal.goDash()" class="mbtn dash fas fa-chart-bar" data-intro='Navigate to Dashboard.'></i>
     <i title="Ask Data" onclick="tabportal.goAsk()" class=" mbtn ask fas fa-comment-dots disabled" data-intro="Navigate to Ask Data.<br>If greyed it means it's not yet loaded, be patient..."></i>
     <i title="Edit Dashboard" onclick="tabportal.goEdit()" class=" mbtn edit fas fa-edit disabled" data-intro="Navigate to Edit Mode.<br>If greyed it means it's not yet loaded, be patient..."></i>
     <i class="separator fas"></i>
@@ -98,7 +104,7 @@
     <i title="Only West Coast" onclick="tabportal.filter(this,'Region','East')" class="filt dashfeat mbtn roro fas fa-balance-scale-right disabled" ></i>
     <i title="Take Action by Selecting States" onclick="tabportal.showMarks()" class="glow mbtn action fas fa-flag disabled" data-intro="Trigger Actions on Selections<br>Demonstrate Dashboard to App Communication.<br>You need to first select States on the map."></i>
     <i class="separator fas"></i>
-    <i onclick="tabportal.intro()" class="dashfeat help mbtn fas fa-question"></i>
+    <i onclick="tabportal.intro()" class="help mbtn fas fa-question"></i>
   </div>
   
   <div id="main" class="collapsable">
@@ -113,6 +119,128 @@
         </div>
         <div class="carousel-item">
           <div id='tableauAsk'><iframe style='width: 100%; height: 91vh; border: 0'></iframe></div>
+        </div>
+        <div class="carousel-item intro">
+          <div id='thumb'>
+            <div class="sections">Open Dashboards</div>
+            <section class="thumbnail-grid">
+              <ul>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="Store Sales Dashboard">
+                    <figure>
+                      <figcaption>
+                        <p class="description">Store Analytics
+                        </p>
+                      </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">All you want to know about the sales in our stores, margin, discount per region, product etc...</span>
+                        <img src="img/dash1.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-handshake"></i><i class="price-lock fas fa-lock-open"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="Marketing Analytics">
+                    <figure>
+                      <figcaption>
+                        <p class="description">Marketing Analytics
+                        </p>
+                      </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">Lorem Ipsum is simply dummy text of the printing and typesetting in industries</span>
+                        <img src="img/dash6.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-handshake"></i><i class="price-lock fas fa-lock-open"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+            </section>
+            <div class="sections">Premium Dashboards</div>
+            <section class="thumbnail-grid">
+              <ul>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="Benchmarking Dashboard">
+                    <figure>
+                      <figure>
+                        <figcaption>
+                          <p class="description">Benchmark Analytics
+                          </p>
+                        </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">Lorem Ipsum is simply dummy text of the printing and typesetting in industries</span>
+                        <img src="img/dash2.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-credit-card"></i><i class="price-lock fas fa-lock"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="Advanced Currency Management">
+                    <figure>
+                      <figcaption>
+                        <p class="description">Currency Analytics
+                        </p>
+                      </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">Lorem Ipsum is simply dummy text of the printing and typesetting in industries</span>
+                        <img src="img/dash3.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-credit-card"></i><i class="price-lock fas fa-lock"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="Shipment Analytics">
+                    <figure>
+                      <figcaption>
+                        <p class="description">Shipment Analytics
+                        </p>
+                      </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">Lorem Ipsum is simply dummy text of the printing and typesetting in industries</span>
+                        <img src="img/dash4.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-credit-card"></i><i class="price-lock fas fa-lock"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+            </section>
+            <div class="sections">My Dashboards</div>
+            <section class="thumbnail-grid">
+              <ul>
+                <li>
+                  <a href="#" onclick="tabportal.goDash(true)" title="My Custom Dashboard for Bill">
+                    <figure>
+                      <figcaption>
+                        <p class="description">My Custom Dashboard for Bill
+                        </p>
+                      </figcaption>
+                      <div class="thumbnail">
+                        <span class="overlay">This is the information Bill requested for the Board</span>
+                        <img src="img/dash5.png" alt="">
+                      </div>
+                      <figcaption>
+                        <p class="description"><i class="price fas fa-cogs"></i><i class="price-lock fas fa-lock-open"></i></p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </div>
         </div>
       </div>
     </div>

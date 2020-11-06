@@ -6,6 +6,8 @@
   var dashHeight="91vh";
   const DS_NAME="Sample-Superstore";
   const VIEW_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore_16044844364960/Overview";
+  const EDIT_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/authoring/Superstore_16044844364960/Overview";
+  const ASK_PATH=`https://eu-west-1a.online.tableau.com/t/alteirac/askData/${DS_NAME}`;
   const WIDGET_PATH="https://eu-west-1a.online.tableau.com/t/alteirac/views/Superstore_16044844364960/Widget";
   const FIELD_ACTION="State";
 
@@ -21,16 +23,16 @@
   function loadVizInit() {
     urlView=`${VIEW_PATH}?:embed=y&render=true`;
     placeholderView = document.getElementById("tableauVizi");
+    preloadEdit();
+    preloadAsk();
     var optView = {
       onFirstInteractive: function () {
-        preloadEdit();
-        preloadAsk();
-        enableDashFeature();
         listenToMarksSelection();
         $(".dash").addClass("navi");
+        $("#tableauVizi iframe").css("width","100%");
       },
       device:mobileCheck()?'phone':'default',
-      width: "100%",
+      width: "99.9%",
       height: dashHeight,
       hideTabs: true,
       hideToolbar: true,
@@ -124,41 +126,37 @@
   function preloadEdit(){
     if(edit)
         edit.dispose()
-      var placeholderEdit = document.getElementById("tableauEdit");
-      viz.getCurrentUrlAsync().then(function (current_url) {
-        edit_url = current_url.split("?")[0].replace("/views", "/authoring");
-        edit_options = {
-          width: "100%",
-          height: editHeight,
-          onFirstInteractive: function () {
-            isEditLoaded=true;
-            var iframe = $("#tableauEdit iframe")[0];
-            $(".edit").removeClass("disabled");
-            $(".edit").removeClass("loading");
-            $(".edit").addClass("navi");
-            iframe.onload = function () {
-              setTimeout(() => {
-                preloadEdit();
-              }, 500);
-            };
-          },
-        };
-        edit=new tableau.Viz(placeholderEdit, edit_url, edit_options);
-      });
+    var placeholderEdit = document.getElementById("tableauEdit");
+      edit_url = EDIT_PATH;
+      edit_options = {
+        width: "100%",
+        height: editHeight,
+        onFirstInteractive: function () {
+          isEditLoaded=true;
+          var iframe = $("#tableauEdit iframe")[0];
+          $(".edit").removeClass("disabled");
+          $(".edit").removeClass("loading");
+          $(".edit").addClass("navi");
+          iframe.onload = function () {
+            setTimeout(() => {
+              preloadEdit();
+            }, 500);
+          };
+        },
+      };
+      edit=new tableau.Viz(placeholderEdit, edit_url, edit_options);
   }
 
   function preloadAsk(){
-    viz.getCurrentUrlAsync().then(function (current_url) {
-      var ask_url = `${current_url.split("views")[0]}askData/${DS_NAME}`;
-      $("#tableauAsk iframe").on("load", function() {
-        $(".ask").removeClass("disabled");
-        $(".ask").removeClass("loading");
-        $(".ask").addClass("navi");
-        isAskLoaded=true;
-      })
-      $("#tableauAsk iframe")[0].contentWindow.location=ask_url;
-      $("#tableauAsk iframe")[0].style.height=askHeight;
+    var ask_url = ASK_PATH;
+    $("#tableauAsk iframe").on("load", function() {
+      $(".ask").removeClass("disabled");
+      $(".ask").removeClass("loading");
+      $(".ask").addClass("navi");
+      isAskLoaded=true;
     })
+    $("#tableauAsk iframe")[0].contentWindow.location=ask_url;
+    $("#tableauAsk iframe")[0].style.height=askHeight;
   }
 
   function enableDashFeature(){
@@ -173,25 +171,27 @@
     $(".action").addClass("disabled");
   }
 
-  function goDash(){
-    if(!$(".dash").hasClass("disabled")){
+  function goDash(force){
+    if(!$(".dash").hasClass("selected") || force){
       enableDashFeature();
       $(".bread").text("/ Dashboard / Main");
-      $(".dash").addClass("disabled");
-      $(".edit").removeClass("disabled");
-      $(".ask").removeClass("disabled");
+      $(".dash").addClass("selected");
+      $(".edit").removeClass("selected");
+      $(".ask").removeClass("selected");
+      $(".navigator").removeClass("selected");
       $("#myCarousel").carousel(0);
       $("#myCarousel").carousel("pause");
     }
   }
 
   function goEdit(){
-    if(!$(".edit").hasClass("disabled")){
+    if(!$(".edit").hasClass("selected")){
       disableDashFeature();
       $(".bread").text("/ Dashboard / Edit");
-      $(".edit").addClass("disabled");
-      $(".dash").removeClass("disabled");
-      $(".ask").removeClass("disabled");
+      $(".edit").addClass("selected");
+      $(".dash").removeClass("selected");
+      $(".ask").removeClass("selected");
+      $(".navigator").removeClass("selected");
       $("#myCarousel").carousel(1);
       $("#myCarousel").carousel("pause");
       resizeElements();
@@ -199,12 +199,13 @@
   }
 
   function goAsk(){
-    if(!$(".ask").hasClass("disabled")){
+    if(!$(".ask").hasClass("selected")){
       disableDashFeature();
       $(".bread").text("/ Dashboard / Ask");
-      $(".ask").addClass("disabled");
-      $(".dash").removeClass("disabled");
-      $(".edit").removeClass("disabled");
+      $(".ask").addClass("selected");
+      $(".dash").removeClass("selected");
+      $(".edit").removeClass("selected");
+      $(".navigator").removeClass("selected");
       $("#myCarousel").carousel(2);
       $("#myCarousel").carousel("pause");
     }
@@ -309,9 +310,24 @@
       $("body").scrollLeft(100);
 
     });
+    if(!$(".dash").hasClass("selected"))
+      goDash();
     it.start();
   }
+
+  function goThumb(){
+    $("#myCarousel").carousel(3);
+    $(".bread").text("/ Dashboard / Navigate");
+    $("#myCarousel").carousel("pause");
+    disableDashFeature();
+    $(".navigator").addClass("selected");
+    $(".ask").removeClass("selected");
+    $(".dash").removeClass("selected");
+    $(".edit").removeClass("selected");
+  }
+
   window.tabportal={};
+  window.tabportal.goThumb=goThumb;
   window.tabportal.intro=intro;
   window.tabportal.showMarks=showMarks;
   window.tabportal.toggleMenu=toggleMenu;
