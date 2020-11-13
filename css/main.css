@@ -231,7 +231,10 @@
   font-weight: bolder;
   line-height: 60px;
   color:white;
-  font-family: 'Henny Penny';
+  /* font-family: 'Henny Penny'; */
+  background-image: url(/img/favicon-32x32.png);
+  background-repeat: no-repeat;
+  background-position: right 15px bottom 10px;
 }
 
 .menu-entry{
