@@ -64,7 +64,7 @@
   margin-left: 0px;
 }
 
-.carousel {
+#myCarousel {
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: #f59315;
@@ -232,7 +232,7 @@
   line-height: 60px;
   color:white;
   /* font-family: 'Henny Penny'; */
-  background-image: url(/img/favicon-32x32.png);
+  background-image: url(/img/favicon-32x32.png?tm=2);
   background-repeat: no-repeat;
   background-position: right 15px bottom 10px;
 }

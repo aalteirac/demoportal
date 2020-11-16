@@ -16,7 +16,7 @@
   });
 
   function resizeElements(){
-    if(isEditLoaded==true)
+    if(isEditLoaded==true && $(".three").is(":visible"))
       edit.setFrameSize($("#main").outerWidth(), $("#main").outerHeight()-27);
   }
 
@@ -129,11 +129,12 @@
     var placeholderEdit = document.getElementById("tableauEdit");
       edit_url = EDIT_PATH;
       edit_options = {
-        width: "100%",
-        height: editHeight,
+        width: "99%",
+        height: "100%",
         onFirstInteractive: function () {
           isEditLoaded=true;
           var iframe = $("#tableauEdit iframe")[0];
+          $("#tableauEdit iframe").css("width","100%");
           $(".edit").removeClass("disabled");
           $(".edit").removeClass("loading");
           $(".edit").addClass("navi");
@@ -179,8 +180,10 @@
       $(".edit").removeClass("selected");
       $(".ask").removeClass("selected");
       $(".navigator").removeClass("selected");
-      $("#myCarousel").carousel(0);
-      $("#myCarousel").carousel("pause");
+      $(".two").show();
+      $(".one").hide();
+      $(".three").hide();
+      $(".four").hide();
     }
   }
 
@@ -192,8 +195,10 @@
       $(".dash").removeClass("selected");
       $(".ask").removeClass("selected");
       $(".navigator").removeClass("selected");
-      $("#myCarousel").carousel(1);
-      $("#myCarousel").carousel("pause");
+      $(".three").show();
+      $(".two").hide();
+      $(".four").hide();
+      $(".one").hide();
       resizeElements();
     }
   }
@@ -206,8 +211,10 @@
       $(".dash").removeClass("selected");
       $(".edit").removeClass("selected");
       $(".navigator").removeClass("selected");
-      $("#myCarousel").carousel(2);
-      $("#myCarousel").carousel("pause");
+      $(".four").show();
+      $(".three").hide();
+      $(".two").hide();
+      $(".one").hide();
     }
   }
 
@@ -316,9 +323,11 @@
   }
 
   function goThumb(){
-    $("#myCarousel").carousel(3);
+    $(".one").show();
+    $(".two").hide();
+    $(".three").hide();
+    $(".four").hide();
     $(".bread").text("/ Dashboard / Navigate");
-    $("#myCarousel").carousel("pause");
     disableDashFeature();
     $(".navigator").addClass("selected");
     $(".ask").removeClass("selected");

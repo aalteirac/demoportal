@@ -2,10 +2,10 @@
 <head>
   <!-- <meta name="viewport" content="width=device-width, initial-scale=0"> -->
   <title>ACME Inc.</title>
-  <link href="css/reset.css?tm=69" rel="stylesheet" type="text/css" media="all">
-  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png?tm=69">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png?tm=69">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png?tm=69">
+  <link href="css/reset.css?tm=71" rel="stylesheet" type="text/css" media="all">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png?tm=71">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png?tm=71">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png?tm=71">
   <link rel="manifest" href="/img/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.0.1/introjs.min.css" integrity="sha512-fsq7ym+bMq7ecs277R2a3QDPxF+JIwNNnkPfj9rIKDUyqrbXDnICZj/cCLcP3bKh3+jsCBnBR7BZJShOmELL0Q==" crossorigin="anonymous" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,10 +15,10 @@
   <script type="text/javascript" src="js/embedrocks.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/f4888cceb4.js"></script>
-  <script src="js/tableau.js?tm=69"></script>
+  <script src="js/tableau.js?tm=71"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="css/main.css?tm=69" rel="stylesheet" type="text/css" media="all">
-  <link href="css/thumb.css?tm=69" rel="stylesheet" type="text/css" media="all">
+  <link href="css/main.css?tm=71" rel="stylesheet" type="text/css" media="all">
+  <link href="css/thumb.css?tm=71" rel="stylesheet" type="text/css" media="all">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/3.0.1/intro.min.js" integrity="sha512-Y3bwrs/uUQhiNsD26Mpr5YvfG18EY0J+aNxYI7ZQPJlM9H+lElGpuh/JURVJR/NBE+p1JZ+sVE773Un4zQcagg==" crossorigin="anonymous"></script>
   <script type="text/javascript">
       window.mobileCheck = function() {
@@ -35,9 +35,6 @@
       }
       function initializeViz() {
         tabportal.loadVizInit();
-        setTimeout(()=>{
-            tabportal.goThumb();
-          },3000)
       }
   </script>
   <script type="text/javascript">
@@ -109,18 +106,9 @@
   
   <div id="main" class="collapsable">
     <div class="ban"><i class="round fas fa-sync"></i><span class="bread collapsable">/ Dashboard / Main</span></div>
-    <div id="myCarousel" class="carousel" data-pause="true" data-ride="false">
+    <div id="myCarousel" class="">
       <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active" data-step="1" data-intro='Hello and Welcome ! <br>This is your Embedded Dashboard!'>
-          <div id='tableauVizi'></div>
-        </div>
-        <div class="carousel-item">
-          <div id='tableauEdit'></div>
-        </div>
-        <div class="carousel-item">
-          <div id='tableauAsk'><iframe style='width: 100%; height: 91vh; border: 0'></iframe></div>
-        </div>
-        <div class="carousel-item intro">
+        <div class="one intro">
           <div id='thumb'>
             <div class="sections">Open Dashboards</div>
             <section class="thumbnail-grid">
@@ -241,6 +229,15 @@
               </ul>
             </section>
           </div>
+        </div>
+        <div class="two" data-step="1" data-intro='Hello and Welcome ! <br>This is your Embedded Dashboard!'>
+          <div id='tableauVizi'></div>
+        </div>
+        <div class="three ">
+          <div id='tableauEdit'></div>
+        </div>
+        <div class="four">
+          <div id='tableauAsk'><iframe style='width: 100%; height: 91vh; border: 0'></iframe></div>
         </div>
       </div>
     </div>
