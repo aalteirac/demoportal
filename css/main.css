@@ -70,7 +70,9 @@
   border-top-color: #f59315;
   /* height: 100%; */
 }
-
+.one a{
+  cursor: pointer;
+}
 /* Toolbar */
 
 .toolbar {
