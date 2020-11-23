@@ -30,6 +30,9 @@
         listenToMarksSelection();
         $(".dash").addClass("navi");
         $("#tableauVizi iframe").css("width","100%");
+        setTimeout(() => {
+          $("body").scrollTop(0);
+        }, 5000);
       },
       device:mobileCheck()?'phone':'default',
       width: "99.9%",
